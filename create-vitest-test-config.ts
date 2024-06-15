@@ -7,6 +7,7 @@ export const createVitestTestConfig = (testingType: string): InlineConfig => {
     isolate: false,
     passWithNoTests: true,
     include: [`tests/${testingType}/**/*.test.ts`],
+    env: { [process.env.test]: process.cwd() ?? '' },
     coverage: {
       provider: 'istanbul',
       reporter: ['text', 'json', 'html'],
