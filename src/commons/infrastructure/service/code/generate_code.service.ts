@@ -3,11 +3,9 @@ import { IGenerateCodeService } from 'src/commons/domain/repository/generate_cod
 
 @Injectable()
 export class GenerateCodeService implements IGenerateCodeService {
-  constructor(
-    private value = true,
-    private code = '',
-    private lake = 'abcdefghijklmnopqrstuvwxyz0123456789',
-  ) {}
+  private value = true;
+  private code = '';
+  private lake = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
   generateCode(): string {
     while (this.value) {
