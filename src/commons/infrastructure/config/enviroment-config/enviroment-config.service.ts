@@ -1,5 +1,5 @@
+import { DatabaseConfig } from '@commons/config/database.interface';
 import { Injectable } from '@nestjs/common';
-import { DatabaseConfig } from 'src/commons/domain/config/database.interface';
 
 @Injectable()
 export class EnviromentConfigService implements DatabaseConfig {

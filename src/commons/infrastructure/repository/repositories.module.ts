@@ -1,10 +1,10 @@
+import { AuthRepositoryOrm } from '@auth/repository/auth.repository';
+import { TypeOrmConfigModule } from '@commons/config/database-config/typeorm-config.module';
+import { Auth } from '@commons/entities/auth.entity';
+import { User } from '@commons/entities/user.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthRepositoryOrm } from 'src/auth/infrastructure/repository/auth.repository';
-import { Auth } from 'src/commons/domain/entities/auth.entity';
-import { User } from 'src/commons/domain/entities/user.entity';
-import { TypeOrmConfigModule } from 'src/commons/infrastructure/config/database-config/typeorm-config.module';
-import { UserRepositoryOrm } from 'src/users/infrastructure/repository/user.repository';
+import { UserRepositoryOrm } from '@users/repository/user.repository';
 
 @Module({
   imports: [TypeOrmConfigModule, TypeOrmModule.forFeature([User, Auth])],

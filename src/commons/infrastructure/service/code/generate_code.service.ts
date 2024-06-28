@@ -1,5 +1,5 @@
+import { IGenerateCodeService } from '@commons/repository/generate_code.interface';
 import { Injectable } from '@nestjs/common';
-import { IGenerateCodeService } from 'src/commons/domain/repository/generate_code.interface';
 
 @Injectable()
 export class GenerateCodeService implements IGenerateCodeService {
