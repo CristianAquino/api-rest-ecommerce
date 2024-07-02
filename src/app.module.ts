@@ -1,20 +1,28 @@
+import { EnviromentConfigModule } from '@commons/config/enviroment-config/enviroment-config.module';
+import { ControllerModule } from '@commons/controllers.module';
+import { JwtModule as JwtServiceModule } from '@commons/service/jwt/jwt.module';
+import { CodeStrategy } from '@commons/strategies/code.strategy';
+import { EmailStrategy } from '@commons/strategies/email.strategy';
+import { JwtStrategy } from '@commons/strategies/jwt.strategy';
+import { UsecaseProxyModule } from '@commons/usecases-proxy/usecase-proxy.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { EnviromentConfigModule } from './commons/infrastructure/config/enviroment-config/enviroment-config.module';
-import { UserController } from './users/adapters/user.controller';
-import { UserModule } from './users/adapters/user.module';
-import { UsecaseProxyModule } from './users/infrastructure/usecases-proxy/usecase-proxy.module';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
+    PassportModule,
+    JwtModule.register({ secret: process.env.JWT_SECRET }),
     ConfigModule.forRoot({
       isGlobal: true, // Para que se pueda acceder desde cualquier parte del servidor,
       cache: true,
     }),
     UsecaseProxyModule.register(),
-    UserModule,
+    ControllerModule,
+    JwtServiceModule,
     EnviromentConfigModule,
   ],
-  controllers: [UserController],
+  providers: [EmailStrategy, CodeStrategy, JwtStrategy],
 })
 export class AppModule {}
