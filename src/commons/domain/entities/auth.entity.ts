@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity('auths')
 export class Auth {
@@ -22,15 +25,15 @@ export class Auth {
   @Column({ type: 'varchar', length: 64, unique: true })
   email: string;
 
-  @Column({ type: 'varchar', nullable: true, default: null })
+  @Column({ type: 'text', nullable: true })
   activatedAt: string;
-
-  @Column({ type: 'boolean', default: false })
-  activated: boolean;
 
   @CreateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAd: Date;
+
+  @OneToOne(() => User, (user) => user.auth)
+  user: Relation<User>;
 }
