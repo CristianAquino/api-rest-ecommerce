@@ -16,6 +16,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+        "@src/*": ["src/*"],
+        "@commons/*":["src/commons/*","src/commons/adapter/*","src/commons/domain/*","src/commons/infrastructure/*","src/commons/usecases/*"],
+        "@users/*":["src/users/*","src/users/adapter/*","src/users/domain/*","src/users/infrastructure/*","src/users/usecases/*"],
+        "@auth/*":["src/auth/*","src/auth/adapter/*","src/auth/domain/*","src/auth/infrastructure/*","src/auth/usecases/*"],
+      }
+  },
+  "exclude": ["node_modules", "dist","**/*.spec.ts"]
 }
