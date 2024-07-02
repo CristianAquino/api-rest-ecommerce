@@ -12,7 +12,7 @@ export class GenerateCodeService implements IGenerateCodeService {
       const nuevo = this.lake.charAt(
         Math.floor(Math.random() * (this.lake.length - 1)),
       );
-      if (!this.getCode.includes(nuevo)) {
+      if (!this.getCode.includes(nuevo.toLocaleUpperCase())) {
         this.setCode = nuevo;
       }
       if (this.getCode.length === 6) {
