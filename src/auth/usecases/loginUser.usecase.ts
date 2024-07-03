@@ -36,7 +36,7 @@ export class LoginUserUseCase {
     user.code = null;
     const data = await this.authRepository.createProfileUser(user);
     const token = this.jwtTokenService.createToken(
-      { username: data.name },
+      { id: data.id, isRegistered: data.isRegistered },
       this.jwtConfig.getJwtSecret(),
       this.jwtConfig.getJwtExpirationTime(),
     );

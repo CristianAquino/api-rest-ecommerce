@@ -4,7 +4,7 @@ import { Auth } from '@commons/entities/auth.entity';
 import { User } from '@commons/entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDTO } from '@users/adapters/DTO/Out/user-out.dto';
+import { UserResponseJWTDTO } from '@users/DTO/Out/user-out.dto';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -34,8 +34,9 @@ export class AuthRepositoryOrm implements AuthRepository {
     return saved.code;
   }
 
-  // metodo para cuando se valida el codigo == crear un user y almacenarlo
-  async createProfileUser(createProfile: AuthModel): Promise<UserDTO> {
+  async createProfileUser(
+    createProfile: AuthModel,
+  ): Promise<UserResponseJWTDTO> {
     if (createProfile.isActivated) {
       // return await this.userRepository.findOne({
       //   where: { auth: { id: createProfile.id } },
@@ -49,8 +50,6 @@ export class AuthRepositoryOrm implements AuthRepository {
         .getOne();
     }
     const user = new User();
-    // change value here
-    user.name = 'sdas';
     const saved = await this.userRepository.save(user);
     createProfile.isActivated = true;
     createProfile.user = saved;
