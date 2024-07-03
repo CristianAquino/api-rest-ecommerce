@@ -25,6 +25,9 @@ export class Auth {
   @Column({ type: 'varchar', length: 64, unique: true })
   email: string;
 
+  @Column({ type: 'boolean', default: false })
+  isActivated: boolean;
+
   @Column({ type: 'text', nullable: true })
   activatedAt: string;
 
