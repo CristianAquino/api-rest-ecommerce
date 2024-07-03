@@ -1,7 +1,7 @@
 import { AuthController } from '@auth/auth.controller';
 import { UsecaseProxyModule } from '@commons/usecases-proxy/usecase-proxy.module';
 import { Module } from '@nestjs/common';
-import { UserController } from '@users/adapters/user.controller';
+import { UserController } from '@users/user.controller';
 
 @Module({
   imports: [UsecaseProxyModule.register()],
