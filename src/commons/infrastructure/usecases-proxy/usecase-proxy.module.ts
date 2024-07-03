@@ -10,9 +10,8 @@ import { JwtModule } from '@commons/service/jwt/jwt.module';
 import { JwtTokenService } from '@commons/service/jwt/jwt.service';
 import { UseCaseProxy } from '@commons/usecases-proxy/usecase-proxy';
 import { DynamicModule, Module } from '@nestjs/common';
-import { CreateUserUseCases } from '@users/createUser.usecase';
-import { GetAllUserUseCases } from '@users/getAllUsers.usecase';
 import { UserRepositoryOrm } from '@users/repository/user.repository';
+import { UpdateUserUseCases } from '@users/updateUser.usecase';
 
 @Module({
   imports: [
@@ -23,8 +22,7 @@ import { UserRepositoryOrm } from '@users/repository/user.repository';
   ],
 })
 export class UsecaseProxyModule {
-  static GET_ALL_USERS_USE_CASE = 'getAllUsersUsecaseProxy';
-  static CREATE_USER_USE_CASE = 'createUserUsecaseProxy';
+  static UPDATE_USER_USE_CASE = 'updateUserUsecaseProxy';
   static REGISTER_USE_CASE = 'registerUsecaseProxy';
   static LOGIN_USER_USE_CASE = 'loginUserUsecaseProxy';
 
@@ -34,15 +32,9 @@ export class UsecaseProxyModule {
       providers: [
         {
           inject: [UserRepositoryOrm],
-          provide: UsecaseProxyModule.GET_ALL_USERS_USE_CASE,
+          provide: UsecaseProxyModule.UPDATE_USER_USE_CASE,
           useFactory: (userRepository: UserRepositoryOrm) =>
-            new UseCaseProxy(new GetAllUserUseCases(userRepository)),
-        },
-        {
-          inject: [UserRepositoryOrm],
-          provide: UsecaseProxyModule.CREATE_USER_USE_CASE,
-          useFactory: (userRepository: UserRepositoryOrm) =>
-            new UseCaseProxy(new CreateUserUseCases(userRepository)),
+            new UseCaseProxy(new UpdateUserUseCases(userRepository)),
         },
         {
           inject: [AuthRepositoryOrm, GenerateCodeService],
@@ -80,8 +72,7 @@ export class UsecaseProxyModule {
         },
       ],
       exports: [
-        UsecaseProxyModule.GET_ALL_USERS_USE_CASE,
-        UsecaseProxyModule.CREATE_USER_USE_CASE,
+        UsecaseProxyModule.UPDATE_USER_USE_CASE,
         UsecaseProxyModule.REGISTER_USE_CASE,
         UsecaseProxyModule.LOGIN_USER_USE_CASE,
       ],
