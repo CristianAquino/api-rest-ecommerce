@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Inject, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { UseCaseProxy } from '../infrastructure/usecases-proxy/usecase-proxy';
-import { UsecaseProxyModule } from '../infrastructure/usecases-proxy/usecase-proxy.module';
+import { UseCaseProxy } from '../../commons/infrastructure/usecases-proxy/usecase-proxy';
+import { UsecaseProxyModule } from '../../commons/infrastructure/usecases-proxy/usecase-proxy.module';
 import { CreateUserUseCases } from '../usecases/createUser.usecase';
 import { GetAllUserUseCases } from '../usecases/getAllUsers.usecase';
 import { CreateUserDTO } from './DTO/In/user-in.dto';

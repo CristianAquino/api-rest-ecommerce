@@ -2,9 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
+import { Auth } from './auth.entity';
 
 @Entity('users')
 export class User {
@@ -19,4 +23,8 @@ export class User {
 
   @UpdateDateColumn()
   updatedAd: Date;
+
+  @OneToOne(() => Auth, (auth) => auth.user)
+  @JoinColumn()
+  auth: Relation<Auth>;
 }

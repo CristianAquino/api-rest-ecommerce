@@ -14,8 +14,9 @@
       "baseUrl": "./",
       "paths": {
         "@src/*": ["src/*"],
-        "@commons/*":["src/commons/*"],
-        "@users/*":["src/users/*"]
+        "@commons/*":["src/commons/*","src/commons/adapter/*","src/commons/domain/*","src/commons/infrastructure/*","src/commons/usecases/*"],
+        "@users/*":["src/users/*","src/users/adapter/*","src/users/domain/*","src/users/infrastructure/*","src/users/usecases/*"],
+        "@auth/*":["src/auth/*","src/auth/adapter/*","src/auth/domain/*","src/auth/infrastructure/*","src/auth/usecases/*"]
       }
     },
     "minify": false
