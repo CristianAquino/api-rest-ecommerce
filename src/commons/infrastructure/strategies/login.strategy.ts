@@ -5,7 +5,8 @@ import { HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { Strategy } from 'passport-custom';
-export class EmailStrategy extends PassportStrategy(Strategy, 'email') {
+
+export class LoginStrategy extends PassportStrategy(Strategy, 'login') {
   constructor(
     @Inject(UsecaseProxyModule.LOGIN_USER_USE_CASE)
     private readonly loginUsecaseProxy: UseCaseProxy<LoginUserUseCase>,
@@ -19,9 +20,9 @@ export class EmailStrategy extends PassportStrategy(Strategy, 'email') {
       .validateEmailExists(email);
 
     if (user) {
-      throw new HttpException('Email already exits', HttpStatus.CONFLICT);
-    } else {
       return 'ok';
+    } else {
+      throw new HttpException('Email no exits', HttpStatus.NOT_FOUND);
     }
   }
 }
