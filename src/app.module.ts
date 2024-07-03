@@ -4,6 +4,7 @@ import { JwtModule as JwtServiceModule } from '@commons/service/jwt/jwt.module';
 import { CodeStrategy } from '@commons/strategies/code.strategy';
 import { EmailStrategy } from '@commons/strategies/email.strategy';
 import { JwtStrategy } from '@commons/strategies/jwt.strategy';
+import { LoginStrategy } from '@commons/strategies/login.strategy';
 import { UsecaseProxyModule } from '@commons/usecases-proxy/usecase-proxy.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -23,6 +24,6 @@ import { PassportModule } from '@nestjs/passport';
     JwtServiceModule,
     EnviromentConfigModule,
   ],
-  providers: [EmailStrategy, CodeStrategy, JwtStrategy],
+  providers: [EmailStrategy, CodeStrategy, LoginStrategy, JwtStrategy],
 })
 export class AppModule {}
