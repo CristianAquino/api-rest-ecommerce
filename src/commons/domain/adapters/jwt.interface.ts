@@ -1,5 +1,6 @@
 export interface IJwtServicePayload {
-  username: string;
+  id: string;
+  isRegistered: boolean;
 }
 
 export interface IJwtService {
