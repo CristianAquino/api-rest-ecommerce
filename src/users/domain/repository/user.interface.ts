@@ -1,7 +1,5 @@
-import { CreateUserDTO } from 'src/users/adapters/DTO/In/user-in.dto';
-import { UserDTO } from 'src/users/adapters/DTO/Out/user-out.dto';
+import { UserModel } from '../model/user.model';
 
 export interface UserRepository {
-  createUser(createUserDTO: CreateUserDTO): Promise<UserDTO>;
-  getAllUsers(): Promise<UserDTO[]>;
+  update(id: string, user: UserModel): Promise<string>;
 }
